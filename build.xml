@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project name="Utils-Load" default="build">
+	<property name="name.jar"   value="sune-utils-load"   />
+	<property name="path.cwd"   value="."                 />
+    <property name="path.bin"   value="${path.cwd}/bin/"  />
+	<property name="path.src"   value="${path.cwd}/src/"  />
+	<property name="path.build" value="${path.cwd}/build" />
+	
+	<target name="build" depends="build-jar,build-jar-src" />
+	
+    <target name="build-jar">
+    	<echo message="Generating JAR file..." />
+    	
+        <jar destfile="${path.build}/${name.jar}.jar">
+        	<fileset dir ="${path.bin}" />
+        	<fileset file="license.md"  />
+        </jar>
+    </target>
+	
+	<target name="build-jar-src" depends="build-jar">
+    	<echo message="Generating source ZIP file..." />
+		
+		<zip destfile="${path.build}/${name.jar}-source.jar">
+			<fileset dir ="${path.src}" />
+			<fileset file="license.md"  />
+		</zip>
+    </target>
+</project>
